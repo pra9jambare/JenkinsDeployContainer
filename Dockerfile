@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head><title>Hello from Jenkins</title></head>
-  <body><h1>Deployed via Jenkins!</h1></body>
-</html>
+# Dockerfile
+FROM nginx:alpine
+COPY ./index.html /usr/share/nginx/html/index.html
