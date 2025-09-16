@@ -8,6 +8,7 @@
 
 ## Ubuntu – OS platform used for setup
 ## 🧱 Project Structure
+- Repo Structure in Github
     ```bash
     .
     ├── Dockerfile
@@ -31,13 +32,17 @@
     sudo systemctl enable jenkins
 
 ## 📌 Access Jenkins at:
-    <pre> ``` http://&lt;your-server-ip&gt;:8080 ``` </pre>
+- Do not use "https" , use "http"
+  ``` bash
+  http://<your-server-ip>:8081
 ## Default initial admin password:
+- Change the password when you login to the jenkins
     ``` bash
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ## 🐳 Step 2: Install Docker
-    ``` bash
+- If you are using root you canavoid sudo
+    ```  bash
     sudo apt update
     sudo apt install docker.io -y
     sudo systemctl start docker
@@ -46,7 +51,7 @@
     sudo usermod -aG docker $USER
     
 - Note: Restart your system or log out/in after adding users to the Docker group.
-- 
+  
 ## 🔌 Step 3: Install Required Jenkins Plugins
 - Go to Manage Jenkins → Manage Plugins → Available Plugins and install the following:
 - Docker Pipeline
@@ -54,23 +59,10 @@
 - Git
 
 ## 📁 Step 4: Create & Push Dockerfile to GitHub
-- Example Dockerfile:-
-  ``` bash
-  FROM nginx:latest
-  COPY index.html /usr/share/nginx/html/index.html
+- Example [\[Dockerfile\]](https://github.com/pra9jambare/JenkinsDeployContainer/blob/main/Dockerfile)
 
 ## 📄 Step 5: Create & Push index.html to GitHub
-- Example index.html:
-  ``` bash
-  <!DOCTYPE html>
-  <html>
-  <head>
-      <title>Welcome to Nginx!</title>
-  </head>
-  <body>
-      <h1>Hello from Jenkins-deployed Nginx container!</h1>
-  </body>
-  </html>
+- Example [\[Index.html\]](https://github.com/pra9jambare/JenkinsDeployContainer/blob/main/index.html)
 
 ## ⚙️ Step 6: Create a New Jenkins Pipeline
 - Open Jenkins Dashboard
@@ -85,5 +77,21 @@
 - Set branch (default: main or master)
 
 ## 📝 Step 8: Write & Push Jenkinsfile to GitHub
-- Example Jenkinsfile:
+- Example [\[Jenkinsfile\]](https://github.com/pra9jambare/JenkinsDeployContainer/blob/main/Jenkinsfile)
 
+## ▶️ Step 9: Run the Jenkins Pipeline
+- Go to your pipeline project in Jenkins
+- Click "Build Now"
+- Monitor the console output for logs
+
+## 🌐 Step 10: Access the Application
+- Once the build is successful, access your Nginx app in the browser:
+  ``` bash
+  http://<your-server-ip>:8081
+  
+## 📚 Notes
+- Ensure port 8081 is open in your firewall settings.
+- Remove any existing containers with the same name before re-running.
+- This setup is for educational purposes only; do not use in production as-is.
+
+# Learn Together & Grow Together 
