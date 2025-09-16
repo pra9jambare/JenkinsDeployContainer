@@ -36,7 +36,7 @@
     ``` bash
     sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
-# 🐳 Step 2: Install Docker
+## 🐳 Step 2: Install Docker
     ``` bash
     sudo apt update
     sudo apt install docker.io -y
@@ -46,17 +46,44 @@
     sudo usermod -aG docker $USER
     
 - Note: Restart your system or log out/in after adding users to the Docker group.
-🔌 Step 3: Install Required Jenkins Plugins
+- 
+## 🔌 Step 3: Install Required Jenkins Plugins
+- Go to Manage Jenkins → Manage Plugins → Available Plugins and install the following:
+- Docker Pipeline
+- Pipeline
+- Git
 
-Go to Manage Jenkins → Manage Plugins → Available Plugins and install the following:
+## 📁 Step 4: Create & Push Dockerfile to GitHub
+- Example Dockerfile:-
+  ``` bash
+  FROM nginx:latest
+  COPY index.html /usr/share/nginx/html/index.html
 
-Docker Pipeline
+## 📄 Step 5: Create & Push index.html to GitHub
+- Example index.html:
+  ``` bash
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <title>Welcome to Nginx!</title>
+  </head>
+  <body>
+      <h1>Hello from Jenkins-deployed Nginx container!</h1>
+  </body>
+  </html>
 
-Pipeline
+## ⚙️ Step 6: Create a New Jenkins Pipeline
+- Open Jenkins Dashboard
+- Click on "New Item"
+- Enter a name, select Pipeline, and click OK
 
-Git
+## 🔗 Step 7: Connect Jenkins to GitHub
+- In your Jenkins Pipeline configuration:
+- Under Pipeline → Definition, choose Pipeline script from SCM
+- SCM: Git
+- Enter your GitHub repository URL
+- Set branch (default: main or master)
 
-📁 Step 4: Create & Push Dockerfile to GitHub
-
-Example Dockerfile:- 
+## 📝 Step 8: Write & Push Jenkinsfile to GitHub
+- Example Jenkinsfile:
 
